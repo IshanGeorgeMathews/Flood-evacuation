@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Model lab · FloodEvac Ernakulam{% endblock %}
+{% block content %}
+<div class="grid model-grid">
+  <section class="panel span-3" id="w-gate" aria-labelledby="h-gate">
+    <h2 id="h-gate" class="panel-title">Held-out event test</h2>
+  </section>
+  <section class="panel" id="w-pr" aria-labelledby="h-pr">
+    <h2 id="h-pr" class="panel-title">Precision–recall on the held-out event</h2>
+  </section>
+  <section class="panel" id="w-reliability" aria-labelledby="h-rel">
+    <h2 id="h-rel" class="panel-title">Calibration (reliability)</h2>
+  </section>
+  <section class="panel" id="w-importance" aria-labelledby="h-imp">
+    <h2 id="h-imp" class="panel-title">What drives the prediction</h2>
+  </section>
+  <section class="panel" id="w-folds" aria-labelledby="h-folds">
+    <h2 id="h-folds" class="panel-title">Spatial cross-validation folds</h2>
+  </section>
+  <section class="panel" id="w-events" aria-labelledby="h-events">
+    <h2 id="h-events" class="panel-title">Sentinel-1 flood observations</h2>
+  </section>
+  <section class="panel" id="w-card" aria-labelledby="h-card">
+    <h2 id="h-card" class="panel-title">Model card</h2>
+  </section>
+</div>
+{% endblock %}
+{% block scripts %}
+<script type="module" src="{{ url_for('static', filename='js/pages/model.js') }}"></script>
+{% endblock %}

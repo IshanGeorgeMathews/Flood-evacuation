@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}Responder ops · FloodEvac Ernakulam{% endblock %}
+{% block content %}
+<div class="filters" id="w-filters" aria-label="Filters"></div>
+<div class="grid responder-grid">
+  <section class="panel span-2 tall" id="w-taluks" aria-labelledby="h-taluks">
+    <h2 id="h-taluks" class="panel-title">Taluks: residents along at-risk roads</h2>
+  </section>
+  <section class="panel" id="w-shelterload" aria-labelledby="h-load">
+    <h2 id="h-load" class="panel-title">Shelter load by taluk</h2>
+  </section>
+  <section class="panel" id="w-histogram" aria-labelledby="h-hist">
+    <h2 id="h-hist" class="panel-title">Road network by flood probability</h2>
+  </section>
+  <section class="panel" id="w-byclass" aria-labelledby="h-class">
+    <h2 id="h-class" class="panel-title">At-risk roads by road class</h2>
+  </section>
+  <section class="panel" id="w-dams" aria-labelledby="h-dams">
+    <h2 id="h-dams" class="panel-title">Upstream dam releases</h2>
+  </section>
+  <section class="panel span-2" id="w-toproads" aria-labelledby="h-top">
+    <h2 id="h-top" class="panel-title">Highest-risk named roads</h2>
+  </section>
+  <section class="panel" id="w-export" aria-labelledby="h-export">
+    <h2 id="h-export" class="panel-title">Field-team route export</h2>
+  </section>
+  <section class="panel" id="w-replaycmp" aria-labelledby="h-replaycmp">
+    <h2 id="h-replaycmp" class="panel-title">2018 replay: proof on a real flood</h2>
+  </section>
+</div>
+{% endblock %}
+{% block scripts %}
+<script type="module" src="{{ url_for('static', filename='js/pages/responder.js') }}"></script>
+{% endblock %}

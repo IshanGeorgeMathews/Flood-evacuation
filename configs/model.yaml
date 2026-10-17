@@ -1,0 +1,50 @@
+# Flood-risk model configuration
+label:
+  # A segment is labelled flooded if at least this fraction of its sample points fall in SAR flood pixels
+  flooded_fraction: 0.30
+  sample_spacing_m: 20
+
+sar:
+  scale_m: 30
+  # Reference ("dry") period for change detection, same orbit, per year
+  reference_months: [1, 2, 3]
+  diff_db: -3.0           # post minus reference backscatter must drop by at least this much
+  max_slope_deg: 5
+  permanent_water_occurrence: 80
+  # Candidate monsoon windows searched for Sentinel-1 acquisitions
+  windows:
+    - ["2017-06-01", "2017-10-31"]
+    - ["2018-06-01", "2018-10-31"]
+    - ["2019-06-01", "2019-10-31"]
+    - ["2020-06-01", "2020-10-31"]
+    - ["2021-06-01", "2021-11-30"]
+    - ["2022-06-01", "2022-10-31"]
+    - ["2023-06-01", "2023-10-31"]
+    - ["2024-06-01", "2024-10-31"]
+  # Max acquisition dates kept per window (wettest first, by 3-day rainfall)
+  max_dates_per_window: 4
+  # Dates always kept if an acquisition exists (key events)
+  must_include: ["2018-08-21", "2018-08-22", "2019-08-10", "2019-08-11", "2019-08-15", "2018-08-09"]
+
+holdout_event: "2018-08"
+
+features:
+  static: [elev, hand, slope, twi, dist_stream_m, stream_order, flow_acc_log, landcover_water, landcover_built,
+           landcover_tree, landcover_crop, road_class_rank, is_bridge, is_causeway, pop_density, dist_gauge_km]
+  # Dam releases are not a feature: the downstream gauge measures their effect (see ingest/dams.py)
+  dynamic: [rain_1d, rain_3d, rain_5d, rain_7d, rain_up_3d, rain_up_5d, gauge_near_rel, gauge_near_rel_3d,
+            gauge_max_rel, days_since_onset, past_flood_freq]
+
+cv:
+  block_km: 10
+  n_folds: 5
+  negative_sample_rate: 0.05
+  random_state: 42
+
+optuna:
+  n_trials: 25
+  timeout_s: 900
+
+operating_point:
+  # Recall is reported at this false-alarm rate (FPR)
+  fpr: 0.05

@@ -1,0 +1,10 @@
+# Live refresh cycle (agree the interval with the client; default hourly)
+interval_minutes: 60
+# Feed age thresholds (seconds) for the freshness badge
+stale_after_s:
+  rainfall: 129600     # 36 h: IMD real-time grids are daily
+  gauges: 10800        # 3 h
+  model: 2592000       # 30 days
+  osm: 7776000         # 90 days
+http_timeout_s: 20
+retries: 2

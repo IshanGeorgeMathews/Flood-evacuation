@@ -1,0 +1,35 @@
+# Edge cost: c(e) = t(e) * (1 + alpha*p(e) + beta*k(e)), infinite if p(e) > tau (tau_bridge for bridges/causeways)
+default_preset: balanced
+presets:
+  cautious: {alpha: 20.0, beta: 0.5, tau: 0.10, tau_bridge: 0.07}
+  balanced: {alpha: 10.0, beta: 0.5, tau: 0.20, tau_bridge: 0.15}
+  fast:     {alpha: 3.0, beta: 0.3, tau: 0.40, tau_bridge: 0.30}
+
+# Free-flow speed by OSM highway class (km/h), used when maxspeed is missing
+speeds_kmh:
+  motorway: 80
+  trunk: 60
+  primary: 50
+  secondary: 40
+  tertiary: 35
+  unclassified: 25
+  residential: 20
+  living_street: 10
+  service: 15
+  default: 25
+v_max_kmh: 80
+
+# Probabilities are calibrated against Sentinel-1 observations, where flooded roads are rare (base rate ~0.02%),
+# so a 20% probability is already ~1000x the base rate. Thresholds are policy choices on that calibrated scale and
+# are evaluated (not tuned) on the held-out 2018 replay.
+# A segment counts as "at risk" (exposure statistics, KPIs) at or above this probability
+risky_p: 0.20
+# Map / legend classes: Low < 5% <= Watch < 10% <= High < 20% <= Severe
+risk_classes: [0.05, 0.10, 0.20]
+alternatives: 2
+isochrone_minutes: 15
+# Penalise shelters as they fill: cost multiplier 1 + capacity_penalty * occupancy_ratio
+capacity_penalty: 1.0
+nearest_shelters: 3
+# Only candidates large enough to run as a relief camp are used as route destinations (estimated places)
+shelter_min_capacity: 200

@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>{% block title %}FloodEvac Ernakulam{% endblock %}</title>
+  <meta name="description" content="Flood-risk aware evacuation routing for Ernakulam district, Kerala">
+  <meta name="theme-color" content="#0b111a">
+  <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
+  <link rel="icon" href="{{ url_for('static', filename='icons/icon.svg') }}" type="image/svg+xml">
+  <link rel="stylesheet" href="{{ url_for('static', filename='vendor/leaflet/leaflet.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/app.css') }}">
+  <script>
+    // apply the saved theme before first paint (no flash)
+    try { const t = localStorage.getItem('fe-theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+  </script>
+</head>
+<body class="page-{{ page }}" data-mock="{{ 'true' if mock else 'false' }}" data-center="{{ center|join(',') }}"
+      data-zoom="{{ zoom }}" data-presets="{{ presets|join(',') }}" data-default-preset="{{ default_preset }}"
+      data-risk-classes="{{ risk_classes|join(',') }}" data-risky-p="{{ risky_p }}">
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="topbar" role="banner">
+    <div class="brand">
+      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3c5 7 9 11.5 9 16.5A9 9 0 0 1 7 19.5C7 14.5 11 10 16 3z" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M10.5 21.5c2 1.6 4 1.6 5.5 0s3.5-1.6 5.5 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <div>
+        <div class="brand-name">FloodEvac <span>Ernakulam</span></div>
+        <div class="brand-sub">Flood-risk evacuation command centre</div>
+      </div>
+    </div>
+    <nav class="tabs" aria-label="Views">
+      <a href="/" class="{{ 'active' if page == 'console' }}" {% if page == 'console' %}aria-current="page"{% endif %}>Evacuation console</a>
+      <a href="/responder" class="{{ 'active' if page == 'responder' }}" {% if page == 'responder' %}aria-current="page"{% endif %}>Responder ops</a>
+      <a href="/model" class="{{ 'active' if page == 'model' }}" {% if page == 'model' %}aria-current="page"{% endif %}>Model lab</a>
+    </nav>
+    <div class="topbar-right">
+      {% if mock %}<span class="chip chip-mock" title="Served from recorded fixtures — run the data pipeline for live data">MOCK DATA</span>{% endif %}
+      <div id="w-freshness" class="freshness" aria-live="polite"></div>
+      <span class="clock" id="clock" aria-label="Local time"></span>
+      <button class="icon-btn" id="theme-toggle" type="button" aria-label="Switch colour theme" title="Switch theme">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z" fill="currentColor"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <div class="disclaimer" role="note">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 1 21h22L12 2zm0 6 1 7h-2l1-7zm0 9.5a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4z" fill="currentColor"/></svg>
+    <span><strong>Decision support only.</strong> Official evacuation orders from KSDMA and the District Administration always take priority. Emergency: <a href="tel:112">112</a> · Disaster helpline <a href="tel:1077">1077</a>.</span>
+  </div>
+
+  <div class="ticker" id="w-alerts" aria-live="polite" aria-label="Live alerts"></div>
+  <section class="kpis" id="w-kpis" aria-label="Key figures"></section>
+
+  <main id="main" class="main">
+    {% block content %}{% endblock %}
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+  <script src="{{ url_for('static', filename='vendor/leaflet/leaflet.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendor/chartjs/chart.umd.min.js') }}"></script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>

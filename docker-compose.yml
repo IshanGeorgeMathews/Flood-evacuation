@@ -1,0 +1,9 @@
+services:
+  floodevac:
+    build: .
+    image: floodevac-ernakulam:1.0.0
+    ports:
+      - "8000:8000"
+    environment:
+      REFRESH_MINUTES: "60"
+    restart: unless-stopped

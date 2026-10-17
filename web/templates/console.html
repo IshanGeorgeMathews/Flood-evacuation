@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}Evacuation console · FloodEvac Ernakulam{% endblock %}
+{% block content %}
+<div class="console">
+  <section class="map-wrap" aria-label="Live flood-risk map">
+    <div id="map" class="map" role="application" aria-label="Map. Tap a location to get the safest route to a shelter."></div>
+    <div id="w-reroute" class="reroute" role="alert" hidden></div>
+    <div id="w-scenario-badge" class="scenario-badge" hidden></div>
+    <div id="w-layers" class="map-card layers"></div>
+    <div id="w-legend" class="map-card legend"></div>
+    <div id="w-replay" class="replaybar" aria-label="August 2018 replay"></div>
+  </section>
+
+  <aside class="dock dock-left" aria-label="Routing">
+    <section class="panel" id="w-routefinder" aria-labelledby="h-route">
+      <h2 id="h-route" class="panel-title">Route finder</h2>
+    </section>
+    <section class="panel" id="w-caution" aria-labelledby="h-caution">
+      <h2 id="h-caution" class="panel-title">Caution level</h2>
+    </section>
+    <section class="panel" id="w-routecard" aria-labelledby="h-compare">
+      <h2 id="h-compare" class="panel-title">Safest vs fastest</h2>
+    </section>
+    <section class="panel" id="w-shelters" aria-labelledby="h-shelters">
+      <h2 id="h-shelters" class="panel-title">Nearest shelters</h2>
+    </section>
+  </aside>
+
+  <aside class="dock dock-right" aria-label="Conditions">
+    <section class="panel" id="w-conditions" aria-labelledby="h-cond">
+      <h2 id="h-cond" class="panel-title">Simulation lab</h2>
+    </section>
+    <section class="panel" id="w-simulator" aria-labelledby="h-sim">
+      <h2 id="h-sim" class="panel-title">What-if rainfall</h2>
+    </section>
+    <section class="panel" id="w-gauges" aria-labelledby="h-gauges">
+      <h2 id="h-gauges" class="panel-title">River gauges <span class="muted">CWC, last 72 h</span></h2>
+    </section>
+    <section class="panel" id="w-rainfall" aria-labelledby="h-rain">
+      <h2 id="h-rain" class="panel-title">District rainfall</h2>
+    </section>
+    <section class="panel" id="w-health" aria-labelledby="h-health">
+      <h2 id="h-health" class="panel-title">Data feeds &amp; model</h2>
+    </section>
+  </aside>
+</div>
+{% endblock %}
+{% block scripts %}
+<script type="module" src="{{ url_for('static', filename='js/pages/console.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,12 @@
+{
+  "name": "FloodEvac Ernakulam",
+  "short_name": "FloodEvac",
+  "description": "Flood-risk aware evacuation routes for Ernakulam district",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0b111a",
+  "theme_color": "#0b111a",
+  "icons": [
+    { "src": "/static/icons/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

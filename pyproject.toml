@@ -1,0 +1,51 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "floodevac"
+version = "1.0.0"
+description = "Flood Evacuation Route System — ML road-flood risk and safe evacuation routing for Ernakulam district, Kerala"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "flask>=3.0",
+  "apscheduler>=3.10",
+  "waitress>=3.0",
+  "python-dotenv>=1.0",
+  "pyyaml>=6.0",
+  "requests>=2.31",
+  "beautifulsoup4>=4.12",
+  "numpy>=1.26",
+  "pandas>=2.1",
+  "pyarrow>=14",
+  "scipy>=1.11",
+  "shapely>=2.0",
+  "pyproj>=3.6",
+  "geopandas>=0.14",
+  "pyogrio>=0.7",
+  "rasterio>=1.3",
+  "xarray>=2023.10",
+  "networkx>=3.2",
+  "osmnx>=1.9",
+  "scikit-learn>=1.4",
+  "xgboost>=2.0",
+  "joblib>=1.3",
+  "shap>=0.44",
+]
+
+[project.optional-dependencies]
+pipeline = [
+  "earthengine-api>=0.1.390",
+  "imdlib>=0.1.20",
+  "pysheds>=0.4",
+  "optuna>=3.5",
+]
+dev = ["pytest>=8.0"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

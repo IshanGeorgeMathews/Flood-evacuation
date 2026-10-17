@@ -1,0 +1,40 @@
+# Confidential design workspace and secrets — never ship
+.claude/
+.env
+
+# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# Data and artefacts (large files go out as GitHub Release assets)
+data/raw/
+data/interim/
+# Large processed outputs and model binaries are shipped as Release assets (scripts/fetch_data.ps1)
+data/processed/*
+!data/processed/README.md
+models/**/*.joblib
+qgis/*.gpkg
+models/**/*.json.gz
+mlruns/
+*.tif
+*.tiff
+*.zip
+dist/
+build/
+
+# QGIS temp
+*.qgs~
+*.qgz~
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

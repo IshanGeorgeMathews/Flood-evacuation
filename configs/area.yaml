@@ -1,0 +1,14 @@
+# Study area: Ernakulam district pilot (client decision, 16 Oct 2026)
+name: Ernakulam
+place_query: "Ernakulam district, Kerala, India"
+# Buffer around the district boundary so routes can leave and re-enter it (metres)
+buffer_m: 3000
+# Bounding box used for raster downloads (lon_min, lat_min, lon_max, lat_max), covering the district + buffer
+bbox: [76.15, 9.75, 76.95, 10.35]
+# Upstream catchment box (Idukki / Idamalayar highlands feeding the Periyar and Muvattupuzha)
+upstream_bbox: [76.75, 9.60, 77.35, 10.45]
+metric_crs: "EPSG:32643"
+storage_crs: "EPSG:4326"
+segment_length_m: 100
+map_center: [10.05, 76.42]
+map_zoom: 11
